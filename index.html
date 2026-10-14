@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Madilu IoT — control your ESP8266 LED and relay from anywhere.">
+<title>Madilu IoT</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#141d30;--panel2:#1b2740;--text:#edf3ff;--muted:#9aa9c5;--line:#2b3955;--accent:#7c9cff;--green:#45d6a1;--red:#ff7885;--yellow:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#17294a 0,var(--bg) 55%);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 15px;font-weight:700;background:var(--accent);color:#091126}button:disabled{opacity:.45;cursor:not-allowed}.wrap{max-width:1050px;margin:auto;padding:22px 16px 42px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#88a7ff,#54e0b1);display:grid;place-items:center;color:#071325;font-size:22px;font-weight:900}.brand h1{font-size:22px;line-height:1.1;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--muted);font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:#75819a}.dot.ok{background:var(--green);box-shadow:0 0 10px #45d6a155}.dot.bad{background:var(--red)}.hero{margin:18px 0 22px}.hero h2{font-size:clamp(25px,5vw,38px);line-height:1.1;letter-spacing:-1px;margin:0 0 10px}.hero p{color:var(--muted);max-width:650px;margin:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.panel{background:linear-gradient(145deg,#172238ee,#111a2bee);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0;box-shadow:0 12px 40px #0002}.device-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.device-icon{height:42px;width:42px;border-radius:13px;background:var(--panel2);display:grid;place-items:center;font-size:22px}.device-title{display:flex;align-items:center;gap:11px}.device-title h3{margin:0;font-size:17px}.device-title p{margin:2px 0 0;color:var(--muted);font-size:12px}.state{font-size:12px;color:var(--muted)}.state.on{color:var(--green)}.bigstate{font-size:27px;font-weight:800;margin:22px 0 15px;letter-spacing:-.5px}.switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px}.switch{width:64px;height:36px;border-radius:999px;background:#34415c;padding:4px;transition:.2s;flex:none}.switch:after{content:"";display:block;width:28px;height:28px;border-radius:50%;background:#fff;transition:.2s}.switch[aria-checked=true]{background:#31b88b}.switch[aria-checked=true]:after{transform:translateX(28px)}.small{font-size:12px;color:var(--muted)}.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.section-title h3{margin:0;font-size:17px}.full{grid-column:1/-1}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:12px}.field input,.field select{width:100%;min-width:0;background:#0b1324;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text)}.rowbtn{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:12px}.secondary{background:#263550;color:var(--text);border:1px solid var(--line)}.danger{background:#442631;color:#ffdbe0;border:1px solid #743d4b}.notice{padding:12px 14px;border:1px solid #6c5826;background:#2d281b;color:#ffe7a1;border-radius:13px;font-size:12px;margin:14px 0}.notice strong{display:block;margin-bottom:3px}.events{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow:auto}.event{display:flex;justify-content:space-between;gap:10px;padding:10px 11px;border-radius:11px;background:#0c1425;border:1px solid #202d45;font-size:12px}.event span:last-child{color:var(--muted);white-space:nowrap}.empty{padding:18px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:12px}.statusline{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.statusbox{padding:10px 12px;border-radius:12px;background:#0c1425;border:1px solid var(--line);flex:1;min-width:130px}.statusbox b{display:block;font-size:13px}.statusbox span{color:var(--muted);font-size:11px}.configgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.footer{margin-top:20px;text-align:center;color:var(--muted);font-size:11px}.hidden{display:none!important}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#edf3ff;color:#0b1020;padding:11px 16px;border-radius:12px;box-shadow:0 8px 35px #0007;z-index:9;max-width:calc(100% - 28px);font-size:13px;font-weight:700}.code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#b9ccff;overflow-wrap:anywhere}
+@media(max-width:650px){.wrap{padding:17px 12px 30px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.fields,.configgrid{grid-template-columns:1fr}.panel{padding:15px}.hero{margin-top:12px}.bigstate{margin:17px 0 12px}.top{align-items:flex-start}.brand h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand"><div class="logo">M</div><div><h1>Madilu IoT</h1><p>YOUR LITTLE CLOUD, YOUR REAL-WORLD DEVICES</p></div></div>
+  <div class="pill"><span class="dot" id="cloudDot"></span><span id="cloudText">Not configured</span></div>
+</header>
+<section class="hero">
+  <h2>Control your space.<br><span style="color:#91adff">From anywhere.</span></h2>
+  <p>A lightweight cloud dashboard for your ESP8266. Toggle an LED and a low-voltage relay load, review recent events, and set schedules.</p>
+</section>
+<div class="notice" id="configNotice"><strong>First-time setup needed</strong>Add your Firebase web-app configuration below, then publish the page. Never put a service-account key or private server credential in this file.</div>
+<main class="grid">
+  <section class="panel">
+    <div class="device-head"><div class="device-title"><div class="device-icon">💡</div><div><h3>Indicator LED</h3><p>GPIO4 · D2</p></div></div><span class="state" id="ledState">UNKNOWN</span></div>
+    <div class="bigstate" id="ledBig">Waiting…</div>
+    <div class="switchrow"><div><b>LED power</b><div class="small">External LED with resistor</div></div><button class="switch" id="ledSwitch" role="switch" aria-checked="false" aria-label="Toggle LED" disabled></button></div>
+  </section>
+  <section class="panel">
+    <div class="device-head"><div class="device-title"><div class="device-icon">⚡</div><div><h3>Relay output</h3><p>GPIO5 · D1</p></div></div><span class="state" id="relayState">UNKNOWN</span></div>
+    <div class="bigstate" id="relayBig">Waiting…</div>
+    <div class="switchrow"><div><b>Relay power</b><div class="small">Low-voltage DC load only</div></div><button class="switch" id="relaySwitch" role="switch" aria-checked="false" aria-label="Toggle relay" disabled></button></div>
+  </section>
+  <section class="panel full">
+    <div class="section-title"><h3>Device status</h3><button class="secondary" id="refreshBtn">Refresh</button></div>
+    <div class="statusline">
+      <div class="statusbox"><b id="deviceStatus">Unknown</b><span>ESP8266 heartbeat</span></div>
+      <div class="statusbox"><b id="lastSeen">—</b><span>Last seen</span></div>
+      <div class="statusbox"><b id="wifiStatus">—</b><span>Wi-Fi signal (RSSI)</span></div>
+    </div>
+    <p class="small">The device is considered online when its heartbeat was updated within the last 45 seconds. Browser presence does not prove the physical output changed.</p>
+  </section>
+  <section class="panel full">
+    <div class="section-title"><h3>Schedule</h3><span class="pill">Runs while device is online</span></div>
+    <p class="small">Schedules are evaluated by the ESP8266 in India Standard Time. Keep the device connected to Wi-Fi. Each schedule uses the selected output's state at that time.</p>
+    <div class="fields">
+      <label class="field">Device<select id="schedDevice"><option value="led">LED</option><option value="relay">Relay</option></select></label>
+      <label class="field">Action<select id="schedAction"><option value="true">Turn ON</option><option value="false">Turn OFF</option></select></label>
+      <label class="field">Time (local)<input id="schedTime" type="time" value="19:00" required></label>
+    </div>
+    <div class="rowbtn"><button id="addSchedule" disabled>Add daily schedule</button><button class="secondary" id="clearSchedules" disabled>Clear all</button></div>
+    <div id="scheduleList" style="margin-top:12px" class="events"><div class="empty">No schedules yet.</div></div>
+  </section>
+  <section class="panel full">
+    <div class="section-title"><h3>Recent activity</h3><button class="secondary" id="clearHistory" disabled>Clear history</button></div>
+    <div id="historyList" class="events"><div class="empty">Connect Firebase to load events.</div></div>
+  </section>
+  <section class="panel full">
+    <div class="section-title"><h3>Firebase connection</h3><span class="small">Saved in this browser</span></div>
+    <p class="small">Create a Firebase web app and paste its config. This public web config identifies your project; security comes from Realtime Database Rules, not from hiding this config.</p>
+    <div class="configgrid">
+      <label class="field">API key<input id="apiKey" autocomplete="off" placeholder="AIza…"></label>
+      <label class="field">Auth domain<input id="authDomain" autocomplete="off" placeholder="your-project.firebaseapp.com"></label>
+      <label class="field">Database URL<input id="databaseURL" autocomplete="off" placeholder="https://your-project-default-rtdb…"></label>
+      <label class="field">Project ID<input id="projectId" autocomplete="off" placeholder="your-project-id"></label>
+      <label class="field">App ID<input id="appId" autocomplete="off" placeholder="1:…:web:…"></label>
+      <label class="field">Dashboard login email<input id="loginEmail" type="email" autocomplete="username" placeholder="your Firebase Auth email"></label>
+      <label class="field">Dashboard login password<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Firebase Auth password"></label>
+      <label class="field">Device ID<input id="deviceId" value="madilu-esp8266-01" autocomplete="off"></label>
+    </div>
+    <div class="rowbtn"><button id="connectBtn">Connect Firebase</button><button class="secondary" id="forgetBtn">Forget saved config</button></div>
+    <div class="notice"><strong>Security rule reminder</strong>Do not leave the database publicly writable. For a private/production deployment, enable Firebase Authentication and restrict writes/reads to authorized users. Use Firebase Authentication accounts for the dashboard and device, then restrict database rules to authenticated users and the intended device path. See the setup guide accompanying this file.</div>
+  </section>
+</main>
+<div class="footer">Madilu IoT · Prototype · Never use this prototype to switch mains electricity.</div>
+</div>
+<div id="toast" class="hidden" role="status"></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getDatabase, ref, onValue, set, push, get, remove } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+const $=id=>document.getElementById(id);
+let app,db,auth,deviceId="",base="",unsubs=[],deviceData={},schedules={},historyData={},toastTimer;
+const say=(s)=>{const t=$("toast");t.textContent=s;t.classList.remove("hidden");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add("hidden"),2800)};
+const cfgKeys=["apiKey","authDomain","databaseURL","projectId","appId"];
+function getCfg(){return Object.fromEntries(cfgKeys.map(k=>[k,$(k).value.trim()]));}
+function path(p){return `${base}/${p}`;}
+function updateCloud(ok,msg){$("cloudDot").className="dot "+(ok?"ok":"bad");$("cloudText").textContent=msg;}
+function renderSwitch(name,val){const on=val===true;$(name+"Switch").setAttribute("aria-checked",String(on));$(name+"State").textContent=on?"ON":"OFF";$(name+"State").className="state "+(on?"on":"");$(name+"Big").textContent=on?"ON":"OFF";$(name+"Switch").disabled=!db;}
+function renderDevice(d){deviceData=d||{};renderSwitch("led",deviceData.led===true);renderSwitch("relay",deviceData.relay===true);const ts=Number(deviceData.lastSeen||0);const online=ts>0&&(Date.now()-ts<45000);$("deviceStatus").textContent=online?"Online":"Offline";$("deviceStatus").style.color=online?"var(--green)":"var(--red)";$("lastSeen").textContent=ts?new Date(ts).toLocaleString():"Not seen yet";$("wifiStatus").textContent=Number.isFinite(Number(deviceData.rssi))&&deviceData.rssi!==undefined?`${deviceData.rssi} dBm`:"—";$("configNotice").classList.add("hidden");}
+function renderSchedules(){const el=$("scheduleList"),arr=Object.entries(schedules||{}).sort((a,b)=>(a[1].time||"").localeCompare(b[1].time||""));if(!arr.length){el.innerHTML='<div class="empty">No schedules yet.</div>';return;}el.innerHTML="";for(const [id,s] of arr){const row=document.createElement("div");row.className="event";const left=document.createElement("span");left.textContent=`${s.time||"--:--"} · ${(s.device||"led").toUpperCase()} · ${s.state?"ON":"OFF"}`;const btn=document.createElement("button");btn.className="danger";btn.textContent="Delete";btn.style.padding="5px 9px";btn.onclick=async()=>{try{await remove(ref(db,path("schedules/"+id)));say("Schedule deleted");}catch(e){say("Delete failed: "+e.message)}};row.append(left,btn);el.append(row);}}
+function renderHistory(){const el=$("historyList"),arr=Object.entries(historyData||{}).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));if(!arr.length){el.innerHTML='<div class="empty">No activity recorded yet.</div>';return;}el.innerHTML="";for(const [,h] of arr.slice(0,30)){const row=document.createElement("div");row.className="event";const left=document.createElement("span");left.textContent=`${h.label||h.event||"Event"}${h.source?" · "+h.source:""}`;const right=document.createElement("span");right.textContent=h.ts?new Date(h.ts).toLocaleString():"Just now";row.append(left,right);el.append(row);}}
+function cleanup(){unsubs.forEach(fn=>fn());unsubs=[];}
+async function connect(){const c=getCfg();if(cfgKeys.some(k=>!c[k])||!$("deviceId").value.trim()){say("Fill in all Firebase fields and Device ID");return;}cleanup();try{app=initializeApp(c,"madilu-"+Date.now());db=getDatabase(app);deviceId=$("deviceId").value.trim().replace(/[.#$\[\]/]/g,"_");base="devices/"+deviceId;auth=getAuth(app);const email=$("loginEmail").value.trim(),password=$("loginPassword").value;if(!email||!password){say("Enter Firebase Authentication email and password");return;}await signInWithEmailAndPassword(auth,email,password);localStorage.setItem("madiluConfig",JSON.stringify({...c,deviceId,email}));const subs=[[path("state"),v=>renderDevice(v.val())],[path("schedules"),v=>{schedules=v.val()||{};renderSchedules();}],[path("history"),v=>{historyData=v.val()||{};renderHistory();}]];for(const [p,fn] of subs)unsubs.push(onValue(ref(db,p),fn,e=>{updateCloud(false,"Connection error");say(e.message)}));updateCloud(true,"Firebase connected");$("ledSwitch").disabled=false;$("relaySwitch").disabled=false;$("addSchedule").disabled=false;$("clearSchedules").disabled=false;$("clearHistory").disabled=false;say("Firebase connected");}catch(e){console.error(e);updateCloud(false,"Connection failed");say("Firebase error: "+e.message);}}
+async function setOutput(which){if(!db)return;const desired=deviceData[which]!==true;try{await set(ref(db,path("command/"+which)),{value:desired,ts:Date.now(),source:"web"});await push(ref(db,path("history")),{label:`${which.toUpperCase()} command → ${desired?"ON":"OFF"}`,source:"web",ts:Date.now()});say(`${which.toUpperCase()} command sent`);}catch(e){say("Could not send command: "+e.message);}}
+$("ledSwitch").onclick=()=>setOutput("led");$("relaySwitch").onclick=()=>setOutput("relay");
+$("connectBtn").onclick=connect;
+$("forgetBtn").onclick=()=>{localStorage.removeItem("madiluConfig");cleanup();db=null;auth=null;cfgKeys.forEach(k=>$(k).value="");$("loginEmail").value="";$("loginPassword").value="";$("deviceId").value="madilu-esp8266-01";$("ledSwitch").disabled=true;$("relaySwitch").disabled=true;$("addSchedule").disabled=true;$("clearSchedules").disabled=true;$("clearHistory").disabled=true;updateCloud(false,"Not configured");say("Saved config forgotten");};
+$("refreshBtn").onclick=async()=>{if(!db){say("Connect Firebase first");return;}try{const s=await get(ref(db,base+"/state"));renderDevice(s.val());say("Status refreshed");}catch(e){say(e.message)}};
+$("addSchedule").onclick=async()=>{if(!db)return;const time=$("schedTime").value;if(!/^\d\d:\d\d$/.test(time)){say("Choose a valid time");return;}const device=$("schedDevice").value,state=$("schedAction").value==="true";try{await push(ref(db,path("schedules")),{device,state,time,enabled:true,createdAt:Date.now()});await push(ref(db,path("history")),{label:`Schedule added: ${device.toUpperCase()} ${state?"ON":"OFF"} at ${time}`,source:"web",ts:Date.now()});say("Daily schedule added");}catch(e){say("Schedule failed: "+e.message)}};
+$("clearSchedules").onclick=async()=>{if(!db||!confirm("Delete all schedules?"))return;try{await remove(ref(db,path("schedules")));say("Schedules cleared");}catch(e){say(e.message)}};
+$("clearHistory").onclick=async()=>{if(!db||!confirm("Clear recent history?"))return;try{await remove(ref(db,path("history")));say("History cleared");}catch(e){say(e.message)}};
+try{const saved=JSON.parse(localStorage.getItem("madiluConfig")||"null");if(saved){cfgKeys.forEach(k=>$(k).value=saved[k]||"");$("deviceId").value=saved.deviceId||"madilu-esp8266-01";$("loginEmail").value=saved.email||"";}}catch{}
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){/* Single-file GitHub Pages prototype; install via browser menu. */}
+</script>
+</body>
+</html>
